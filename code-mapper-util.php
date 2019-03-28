@@ -10,7 +10,7 @@ require_once(__DIR__ . '/util/string.php'); // stringContains
 require_once(__DIR__ . '/util/shell.php'); // getFilenameFromGrepLine, execWithNoPrinting, printWarning, printMessageWithColor
 require_once(__DIR__ . '/util/scope.php'); // isFunctionInScope, isClassInScope
 
-const CODE_MAPPER_LOG = './log/code-mapper-log.php';
+const CODE_MAPPER_LOG = realpath(__DIR__ . '/log/code-mapper.log');
 
 $RELATIVE_PATH_TO_ROOT = '../..';
 $ROOT_DIR = realpath(__DIR__ . "/$RELATIVE_PATH_TO_ROOT"); // todo should this be env variable?
