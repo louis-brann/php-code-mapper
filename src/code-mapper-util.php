@@ -108,10 +108,10 @@ function getFunctionCallSourceFiles(string $callerFile, array &$functionCalls, b
 }
 
 function findFunctionDefinitionIsolatedScope(FunctionCall $functionCall) {
-  global $ROOT_DIR;
   $qualifiedFunctionName = $functionCall->getQualifiedFunctionName();
   $callerFile = $functionCall->getFilename();
-  $output = execWithNoPrinting("php $ROOT_DIR/scripts/find-function-definition.php $qualifiedFunctionName $callerFile");
+  $findFunctionScript = __DIR__ . '/find-function-definition.php';
+  $output = execWithNoPrinting("php $findFunctionScript $qualifiedFunctionName $callerFile");
   return !empty($output) ? trim($output[0]) : null;
 }
 
