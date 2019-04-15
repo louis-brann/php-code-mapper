@@ -187,10 +187,10 @@ function generateRequireOnceStatements(array $filesToFunctions, string $codeFile
   return $requireLines;
 }
 
-/* * * * * * * PAYJOY FILE MANAGEMENT * * * * * */
+/* * * * * * * FILE MANAGEMENT * * * * * */
 
 /**
- * Searches the PJ codebase for definitions of FunctionCall
+ * Searches the codebase for definitions of FunctionCall
  *
  * @param FunctionCall $functionCall
  * @return array output lines from grep call
