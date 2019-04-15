@@ -1,1 +1,8 @@
+##### Project files
 log/*.log
+
+##### IDE files
+.idea
+
+##### OS files
+.DS_Store
