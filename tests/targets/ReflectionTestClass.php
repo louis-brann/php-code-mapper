@@ -1,11 +1,9 @@
 <?php
 
-/*
- * This is just used for testing the reflection functions to make sure they
- * work.
- */
-
 class ReflectionTestClass {
+  const CLASS_CONST = true;
+  public $instanceVariable;
+  public static $staticVariable;
   public function __construct() {}
   public static function staticTest() {}
   public function instanceTest() {}

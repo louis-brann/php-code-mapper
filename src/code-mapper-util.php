@@ -116,9 +116,7 @@ function findFunctionDefinitionIsolatedScope(FunctionCall $functionCall) {
 }
 
 function simulateScopeOfFile(string $filename) {
-  global $ROOT_DIR;
   $requires = getRequiresFromFile($filename);
-  $pathToCallerFile = getRelativePath(__FILE__, $filename, $ROOT_DIR);
 
   foreach ($requires as $fileToRequire) {
     $fullRequirePath = getFullRequirePath($filename, $fileToRequire);
@@ -233,10 +231,6 @@ function getRelativePath($file1, $file2, $rootDir) {
 /* * * * * * * * UTIL / SCOPE * * * * * * * */
 
 function isAlreadyAccessible(FunctionCall $functionCall) {
-  // note: this ternary format is experimental (personally, not for the language or anything)
-  //       pro: makes it clear that those lines are continuations of the previous
-  //       con: makes first line less clear that it continues
-  //       I saw Guzzle do it so I'm tryin it out to see how I feel about it
   $functionCallType = $functionCall->getFunctionCallType();
   $functionName = $functionCall->getFunctionName();
   return $functionCallType === FunctionCallType::UNQUALIFIED
