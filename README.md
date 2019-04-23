@@ -2,6 +2,7 @@
 # PHP Code Mapper
 
 ![Codecov](https://img.shields.io/codecov/c/github/louis-brann/php-code-mapper.svg)
+![GitHub](https://img.shields.io/github/license/louis-brann/php-code-mapper.svg)
 
 ### Purpose
 
