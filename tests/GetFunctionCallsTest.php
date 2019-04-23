@@ -2,6 +2,7 @@
 
 namespace PHPCodeMapper\Tests;
 
+use PHPCodeMapper\FunctionCall;
 use PHPCodeMapper\FunctionCallType;
 use PHPUnit\Framework\TestCase;
 

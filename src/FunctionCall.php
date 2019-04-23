@@ -1,5 +1,7 @@
 <?php
 
+namespace PHPCodeMapper;
+
 /**
  * Class FunctionCall
  *

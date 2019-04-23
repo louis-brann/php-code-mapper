@@ -4,9 +4,9 @@
  *   TODO: organize files better (lol, irony)
  */
 
+use PHPCodeMapper\FunctionCall;
 use PHPCodeMapper\FunctionCallType;
 
-require_once(__DIR__ . '/FunctionCall.php'); // FunctionCall
 require_once(__DIR__ . '/util/array-util.php'); // arrayAddValueForKey
 require_once(__DIR__ . '/util/string.php'); // stringContains
 require_once(__DIR__ . '/util/shell.php'); // getFilenameFromGrepLine, execWithNoPrinting, printWarning, printMessageWithColor
