@@ -4,6 +4,8 @@
  *   TODO: organize files better (lol, irony)
  */
 
+use PHPCodeMapper\FunctionCallType;
+
 require_once(__DIR__ . '/FunctionCall.php'); // FunctionCall
 require_once(__DIR__ . '/util/array-util.php'); // arrayAddValueForKey
 require_once(__DIR__ . '/util/string.php'); // stringContains
@@ -258,17 +260,6 @@ class FunctionCallFactory {
     $className = determineFunctionCallClassName($tokens, $index, $functionCallType);
     return new FunctionCall($filename, $functionName, $functionCallType, $className);
   }
-}
-
-/*
- * Note: "OBJECT_INSTANTIATION" is actually equivalent to "constructor".
- * I went for object instantiation cause it seemed clearer to me.
- */
-class FunctionCallType {
-  const OBJECT_INSTANTIATION = 0;
-  const STATIC_METHOD = 1;
-  const INSTANCE_METHOD = 2;
-  const UNQUALIFIED = 3; // not sure what to call this, but "ELSE" basically
 }
 
 function getFunctionCallDeclarationPattern(FunctionCall $functionCall) {

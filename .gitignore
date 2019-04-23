@@ -1,5 +1,8 @@
 ##### Project files
-log/*.log
+/log/*.log
+
+##### Third-party files
+/vendor
 
 ##### IDE files
 .idea

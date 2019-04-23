@@ -1,0 +1,26 @@
+{
+  "name": "louis-brann/php-code-mapper",
+  "type": "library",
+  "description": "PHPCodeMapper library",
+  "keywords": [
+    "dependency",
+    "PHPCodeMapper"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^7.1.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7"
+  },
+  "autoload": {
+    "psr-4": {
+      "PHPCodeMapper\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PHPCodeMapper\\Tests\\": "tests/"
+    }
+  }
+}
