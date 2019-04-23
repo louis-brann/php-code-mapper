@@ -1,6 +1,8 @@
 
 # PHP Code Mapper
 
+![Codecov](https://img.shields.io/codecov/c/github/louis-brann/php-code-mapper.svg)
+
 ### Purpose
 
 A tool to map out the `require_once` dependencies that a file or set of file

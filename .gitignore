@@ -1,8 +1,9 @@
 ##### Project files
 /log/*.log
 
-##### Third-party files
+##### Build files
 /vendor
+/clover.xml
 
 ##### IDE files
 .idea
