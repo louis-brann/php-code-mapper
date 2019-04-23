@@ -6,6 +6,7 @@
 
 use PHPCodeMapper\FunctionCall;
 use PHPCodeMapper\FunctionCallType;
+use PHPCodeMapper\FunctionCallFactory;
 
 require_once(__DIR__ . '/util/array-util.php'); // arrayAddValueForKey
 require_once(__DIR__ . '/util/string.php'); // stringContains
@@ -241,26 +242,6 @@ function isAlreadyAccessible(FunctionCall $functionCall) {
 }
 
 /* * * * * * UTIL / PHP / TOKENS * * * * * * * */
-
-/**
- * Class FunctionCallFactory
- *
- * not really sure if this is a great way to do this but it seems ok. I was
- * struggling where to put the logic for this / the functions that take
- * $tokens and $index as arguments... Ultimately I opted for DI+Factory instead
- * of putting all the token<=>FunctionCall logic in the FunctionCall class
- */
-class FunctionCallFactory {
-  public static function fromTokens($filename, &$tokens, $index) {
-    $tokenText = $tokens[$index][1];
-    $functionCallType = determineFunctionCallType($tokens, $index);
-    $functionName = ($functionCallType == FunctionCallType::OBJECT_INSTANTIATION)
-      ? '__construct'
-      : $tokenText;
-    $className = determineFunctionCallClassName($tokens, $index, $functionCallType);
-    return new FunctionCall($filename, $functionName, $functionCallType, $className);
-  }
-}
 
 function getFunctionCallDeclarationPattern(FunctionCall $functionCall) {
   $functionName = $functionCall->getFunctionName();
