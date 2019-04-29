@@ -128,7 +128,7 @@ class CodeMapper {
     $qualifiedFunctionName = $functionCall->getQualifiedFunctionName();
     $callerFile = $functionCall->getFilename();
     $findFunctionScript = __DIR__ . '/find-function-definition.php';
-    $output = execWithNoPrinting("php $findFunctionScript $qualifiedFunctionName $callerFile");
+    $output = execWithNoPrinting("php $findFunctionScript $this->ROOT_DIR $qualifiedFunctionName $callerFile");
     return !empty($output) ? trim($output[0]) : null;
   }
 
