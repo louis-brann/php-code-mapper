@@ -14,8 +14,6 @@ require_once(__DIR__ . '/util/scope.php'); // isFunctionInScope, isClassInScope
 
 class CodeMapper {
 
-  const CODE_MAPPER_LOG = __DIR__ . '/../log/code-mapper.log';
-
   protected $RELATIVE_PATH_TO_ROOT;
   protected $ROOT_DIR;
 

@@ -1,6 +1,3 @@
-##### Project files
-/log/*.log
-
 ##### Build files
 /vendor
 /clover.xml
