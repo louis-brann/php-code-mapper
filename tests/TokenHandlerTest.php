@@ -6,11 +6,11 @@ use PHPCodeMapper\TokenHandler;
 use PHPCodeMapper\FunctionCallType;
 use PHPUnit\Framework\TestCase;
 
-class GetFunctionCallsTest extends TestCase {
+class TokenHandlerTest extends TestCase {
 
   protected $targetFile = __DIR__ . '/targets/example-script.php';
 
-  public function testAllCases() {
+  public function testGetFunctionCalls() {
     $functionCalls = TokenHandler::getFunctionCalls($this->targetFile);
     $this->assertEquals(4, count($functionCalls));
     $foundTypes = array_map(function($fc){return $fc->getFunctionCallType();}, $functionCalls);

@@ -211,25 +211,6 @@ class CodeMapper {
 
   /* * * * * * * FILE MANAGEMENT * * * * * */
 
-  /**
-   * Searches the codebase for definitions of FunctionCall
-   *
-   * @param FunctionCall $functionCall
-   * @return array output lines from grep call
-   */
-  public function grepForFunctionDefinitionFiles(FunctionCall $functionCall) {
-    global $ROOT_DIR;
-    $functionName = $functionCall->getFunctionName();
-    $grepPattern = $this->getFunctionCallDeclarationPattern($functionCall);
-    // TODO: better exclude directories
-    $command = "ag '$grepPattern' $ROOT_DIR";
-    $output = execWithNoPrinting($command);
-    if (empty($output)) {
-      echo "Wow we couldn't even find $functionName by grep'ing. you're in trouble buddy." . PHP_EOL;
-    }
-    return array_map('getFilenameFromGrepLine', $output);
-  }
-
   public function getRelativePath($file1, $file2, $rootDir) {
     $codeDirectory = dirname($file1);
     $pathFromRoot = str_replace($rootDir, '', $codeDirectory);
