@@ -1,25 +1,33 @@
 <?php
 
-/*
- *   TODO: organize files better (lol, irony)
- */
+ // globally scope namespace the requires
+namespace {
+  require_once(__DIR__ . '/util/array-util.php'); // arrayAddValueForKey
+  require_once(__DIR__ . '/util/string.php'); // stringContains
+  require_once(__DIR__ . '/util/shell.php'); // getFilenameFromGrepLine, execWithNoPrinting, printWarning, printMessageWithColor
+  require_once(__DIR__ . '/util/scope.php'); // isFunctionInScope, isClassInScope
+}
 
-use PHPCodeMapper\FunctionCall;
-use PHPCodeMapper\FunctionCallType;
+namespace PHPCodeMapper {
 
-require_once(__DIR__ . '/util/array-util.php'); // arrayAddValueForKey
-require_once(__DIR__ . '/util/string.php'); // stringContains
-require_once(__DIR__ . '/util/shell.php'); // getFilenameFromGrepLine, execWithNoPrinting, printWarning, printMessageWithColor
-require_once(__DIR__ . '/util/scope.php'); // isFunctionInScope, isClassInScope
+  use PHPCodeMapper\FunctionCall;
+  use PHPCodeMapper\FunctionCallType;
 
 class CodeMapper {
 
+  // fixme: these are now variables, shoud no longer be CONST_CASE
   protected $RELATIVE_PATH_TO_ROOT;
   protected $ROOT_DIR;
 
+  // TODO lol why does this take the relative and not just the full path... x_x
   public function __construct($relativePathToRoot) {
     $this->RELATIVE_PATH_TO_ROOT = $relativePathToRoot;
-    $this->ROOT_DIR = realpath(__DIR__ . "/$this->RELATIVE_PATH_TO_ROOT");
+    $rootDir = __DIR__ . "/$this->RELATIVE_PATH_TO_ROOT";
+    $realRootDir = realpath($rootDir);
+    if (empty($rootDir)) {
+      throw new Exception("$rootDir not valid filepath");
+    }
+    $this->ROOT_DIR = $realRootDir;
   }
 
   public function getRequiresFromFile($filename) {
@@ -126,7 +134,8 @@ class CodeMapper {
     $qualifiedFunctionName = $functionCall->getQualifiedFunctionName();
     $callerFile = $functionCall->getFilename();
     $findFunctionScript = __DIR__ . '/find-function-definition.php';
-    $output = execWithNoPrinting("php $findFunctionScript $this->ROOT_DIR $qualifiedFunctionName $callerFile");
+    $cmd = "php $findFunctionScript $this->ROOT_DIR $qualifiedFunctionName $callerFile";
+    $output = execWithNoPrinting($cmd);
     return !empty($output) ? trim($output[0]) : null;
   }
 
@@ -156,13 +165,13 @@ class CodeMapper {
       if (strpos($functionName, '::') !== false) {
         $className = explode('::', $functionName)[0];
         $methodName = explode('::', $functionName)[1];
-        $reflector = new ReflectionMethod($className, $methodName);
+        $reflector = new \ReflectionMethod($className, $methodName);
       } else {
-        $reflector = new ReflectionFunction($functionName);
+        $reflector = new \ReflectionFunction($functionName);
       }
 
       return $reflector->getFileName();
-    } catch (ReflectionException $e) {
+    } catch (\ReflectionException $e) {
       return null; // not in scope
     }
   }
@@ -250,5 +259,7 @@ class CodeMapper {
       ? isFunctionInScope($functionName)
       : isClassInScope($functionCall->getClassName());
   }
+
+}
 
 }

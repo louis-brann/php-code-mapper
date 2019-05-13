@@ -1,4 +1,5 @@
 <?php
 
-// the type of class doesn't really matter
-$global = new HttpException();
+$global = true;
+define('GLOBAL_CONST_DEFINE', true);
+const GLOBAL_CONST_KEYWORD = true;
