@@ -5,18 +5,6 @@ namespace PHPCodeMapper;
 class TokenHandler {
   /* * * * * * UTIL / PHP / TOKENS * * * * * * * */
 
-  public static function getFunctionCallDeclarationPattern(FunctionCall $functionCall) {
-    $functionName = $functionCall->getFunctionName();
-    $functionCallType = $functionCall->getFunctionCallType();
-    if ($functionCallType == FunctionCallType::OBJECT_INSTANTIATION) {
-      return "class $functionName";
-    } else if ($functionCallType == FunctionCallType::STATIC_METHOD) {
-      return "static function $functionName\(";
-    } else {
-      return "function $functionName\(";
-    }
-  }
-
   public static function determineFunctionCallClassName(&$tokens, $index, $functionCallType) {
     $thisTokenText = $tokens[$index][1] ?? null;
     $tokenTwoBeforeText = $tokens[$index - 2][1] ?? null;
